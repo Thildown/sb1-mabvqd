@@ -1,0 +1,49 @@
+{{define "content"}}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Déployer une nouvelle VM</h4>
+            </div>
+            <div class="card-body">
+                <form id="deployForm" action="/deploy" method="POST">
+                    <div class="mb-3">
+                        <label for="vmName" class="form-label">Nom de la VM</label>
+                        <input type="text" class="form-control" id="vmName" name="vmName" required
+                               pattern="[a-z0-9-]{3,24}" title="Lettres minuscules, chiffres et tirets uniquement (3-24 caractères)">
+                        <div class="form-text">Utilisez uniquement des lettres minuscules, des chiffres et des tirets.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="vmSize" class="form-label">Taille de la VM</label>
+                        <select class="form-select" id="vmSize" name="vmSize" required>
+                            <option value="Standard_B1s">B1s (1 vCPU, 1 GB RAM) - Développement/Test</option>
+                            <option value="Standard_B2s">B2s (2 vCPU, 4 GB RAM) - Production légère</option>
+                            <option value="Standard_B4ms">B4ms (4 vCPU, 16 GB RAM) - Production</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Région</label>
+                        <select class="form-select" id="location" name="location" required>
+                            <option value="westeurope">Europe Ouest (Pays-Bas)</option>
+                            <option value="francecentral">France Centre (Paris)</option>
+                            <option value="northeurope">Europe Nord (Irlande)</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="os" class="form-label">Système d'exploitation</label>
+                        <select class="form-select" id="os" name="os" required>
+                            <option value="windows2019">Windows Server 2019</option>
+                            <option value="ubuntu2004">Ubuntu 20.04 LTS</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Déployer la VM</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
